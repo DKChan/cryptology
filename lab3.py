@@ -1,10 +1,4 @@
-
-def gcd(a ,b):
-	if b == 0:
-		return a
-	else:
-		return gcd(b, a%b)
-
+from quickPow import *
 Z = '计算机学院网络工程信息安全，我们热爱中华人民共和国。大家'
 
 if __name__ == '__main__':

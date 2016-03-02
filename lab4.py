@@ -13,9 +13,6 @@ from quickPow import *
 92823634288080678744140234522891126943796371837343757490572414397027
 '''
 
-def gcd(a, b):
-    return a if b==0 else gcd(b, a%b)
-
 def getE(ln):
     while True:
         dev = round(random.uniform(1, 100000))
@@ -27,7 +24,9 @@ def main(p, q):
     N = p*q
     lN = (p-1)*(q-1)//gcd(p-1, q-1)
     e = getE(lN)
-    d = mpow(e, lN-2, lN)
+    #d = mpow(e, lN-2, lN)
+    d, tt = exgcd(e, lN)
+    #print('d * e : ', (d*e)%lN)
     print('e : %x, N : %x'%(e, N))
     with open('rsa.dat', 'w') as f:
         f.write(str(e) +' ' + str(N))
