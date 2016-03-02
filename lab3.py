@@ -23,3 +23,5 @@ if __name__ == '__main__':
                     wh = Z.find(ch)
                     out += Z[(p * (wh - j)) % 28] # check the regarive
                 print('%d ans : %s'%(j+1, out))
+
+    

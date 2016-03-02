@@ -1,5 +1,5 @@
-
 import random
+from quickPow import *
 '''
 12660080856507330260014884760386366843818805754161383450900446633781098831208888
 02885434855597079715400065966280055005929629760575260374176115165232947386571381
@@ -18,19 +18,28 @@ def gcd(a, b):
 
 def getE(ln):
     while True:
-        e = random.uniform(1, ln)
+        dev = round(random.uniform(1, 100000))
+        e = ln//dev
         if gcd(e, ln) == 1:
             return e
 
 def main(p, q):
     N = p*q
-    lN = gcd(p-1, q-1)
+    lN = (p-1)*(q-1)//gcd(p-1, q-1)
     e = getE(lN)
-    
-    
+    d = mpow(e, lN-2, lN)
+    print('e : %x, N : %x'%(e, N))
+    with open('rsa.dat', 'w') as f:
+        f.write(str(e) +' ' + str(N))
+    with open('pri.dat', 'w') as f:
+        f.write(str(d))
 
-print("please put the key in the key.txt!")
-with open('key.txt') as f:
-     p = f.read()
-     q = f.read()
-     main(p, q)
+if __name__ == '__main__':
+    print("please put the key in the key.txt!")
+    with open('E:\cryptology\key.dat') as f:
+         context = f.read()
+         context = context.split('\n')
+         num = []
+         for i in context:
+            num.append(int(i))
+         main(num[0], num[1])
