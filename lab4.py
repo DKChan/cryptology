@@ -26,6 +26,8 @@ def main(p, q):
     e = getE(lN)
     #d = mpow(e, lN-2, lN)
     d, tt = exgcd(e, lN)
+    while d<0:
+        d+=lN
     #print('d * e : ', (d*e)%lN)
     print('e : %x, N : %x'%(e, N))
     with open('rsa.dat', 'w') as f:

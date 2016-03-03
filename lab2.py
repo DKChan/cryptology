@@ -83,17 +83,16 @@ def revData(lst):
 def revInt(num):
 	return ((num&0xff)<<24)|((num&0xff00)<<8)|((num&0xff0000)>>8)|(num&0xff000000)>>24
 def showAns(tbuf):
+	ret = ''
 	for i in tbuf:
 		out = revInt(i)
-		print("%.8x"%out, end='')
+		ret += "%.8x"%out
 		#print('count 1 : ',bin(out).replace('0b','').count('1'))
 		#print(bin(out).replace('0b','').zfill(32))
+	return ret
 
-if __name__ == '__main__':
-	inner = input("input > ")
-	#in_data = getData(inner)
-	#print(type(in_data))
-	in_data = ''.join("%.2x" %ord(i) for i in inner)
+def md5(in_data):
+	in_data = ''.join("%.2x" %ord(i) for i in in_data)
 	in_data = inFill(in_data)
 	#print('in_data : ', in_data)
 	in_data = _spilt(in_data, 128)
@@ -113,4 +112,14 @@ if __name__ == '__main__':
 	#print('ans : ', hex(temp_buf[0]), hex(temp_buf[1]), hex(temp_buf[2]), hex(temp_buf[3]))
 	for cnt in range(len(temp_buf)):
 		temp_buf[cnt] += buf[cnt]
-	showAns(temp_buf)
+	res = showAns(temp_buf)
+	print(res)
+	return res
+
+
+if __name__ == '__main__':
+	inner = input("input > ")
+	md5(inner)
+	#in_data = getData(inner)
+	#print(type(in_data))
+	
