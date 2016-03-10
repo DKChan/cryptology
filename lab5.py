@@ -27,14 +27,14 @@ def check(m, r, s, y):
 	else:
 		print('Bad!')
 
-if __name__ == '__main__':
+def ELGamal():
 	y = mpow(g, x, p)
-	#print('y : ', y)
-	m = '111'
-	# m = input("input 'm' > ")
-	# m = ''.join('%.2x' %ord(i) for i in m)
-	# m = int(m, 16)
 	m = lab2.md5(m)
 	m = int(m, 16)
 	r, s = sign(m)
 	check(m, r, s, y)
+
+if __name__ == '__main__':
+	m = '111'
+	ELGamal(m)
+	
